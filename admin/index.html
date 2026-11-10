@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | PrintWorks</title>
+  <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <section id="loginPage" class="login-wrapper">
+    <div class="login-card">
+      <img src="/stephenkatelogo2.png" alt="StephenKate Logo" class="site-logo">
+      
+
+      <form id="loginForm">
+        <label>Email Address</label>
+<input id="username" type="email"
+       placeholder="Enter administrator email" required>
+
+        <label>Password</label>
+        <input id="password" type="password"
+               placeholder="Enter password" required>
+
+        <p id="loginError" class="error"></p>
+
+        <button type="submit">Login to Dashboard</button>
+      </form>
+
+      <a href="/" class="back-link">
+        ← Back to Website
+      </a>
+    </div>
+  </section>
+
+  <!-- ADMIN DASHBOARD -->
+  <section id="dashboardPage" hidden>
+
+    <header class="admin-header">
+      <div class="admin-brand">
+    <img src="/stephenkatelogo2.png" alt="StephenKate Logo" class="site-logo2">
+    <h2>STEPHENKATE<span> PRINTING</span> <span1> SERVICES.</span1></h2>
+</div>
+      <div>
+        <span id="welcomeAdmin"></span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+
+      <div class="dashboard-heading">
+        <div>
+          <h1>Dashboard</h1>
+          <p>Manage your printing products and admin accounts.</p>
+        </div>
+      </div>
+
+      <!-- STATISTICS -->
+      <div class="stats">
+        <div class="stat-card">
+          <span>Total Products</span>
+          <h2 id="totalProducts">0</h2>
+        </div>
+
+        <div class="stat-card yellow">
+          <span>Admin Accounts</span>
+          <h2 id="totalAdmins">1</h2>
+        </div>
+      </div>
+
+      <!-- ADD PRODUCT -->
+      <section class="panel">
+        <h2>Add New Product</h2>
+
+        <form id="productForm">
+
+          <input type="hidden" id="editProductId">
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Product Name</label>
+              <input id="productName" type="text"
+                     placeholder="e.g. Business Cards" required>
+            </div>
+
+           <div class="field">
+  <label>Category</label>
+  <select id="productCategory" required>
+    <option value="Sticker">Sticker</option>
+    <option value="Sintra">Sintra</option>
+    <option value="Tarpaulin">Tarpaulin</option>
+    <option value="__other__">Other</option>
+  </select>
+</div>
+
+<div class="field" id="otherCategoryField" hidden>
+  <label>New Category Name</label>
+  <input
+    id="otherCategory"
+    type="text"
+    placeholder="e.g. Mugs, DTF, Business Cards"
+    maxlength="50">
+</div>
+
+            <div class="field">
+              <label>Starting Price (₱)</label>
+              <input id="productPrice" type="number"
+                     min="0" step="0.01" placeholder="150" required>
+            </div>
+
+            <div class="field full">
+  <label>Product Images (Multiple Examples)</label>
+
+  <input
+    id="productImage"
+    type="file"
+    accept="image/*"
+    multiple
+  >
+
+  <small>
+    You can select multiple images for one product.
+    The first image will be the cover image.
+  </small>
+
+  <div id="imagePreviewContainer" class="image-preview-container"></div>
+</div>
+
+            <div class="field full">
+              <label>Description</label>
+              <textarea id="productDescription"
+                        placeholder="Describe the finished printing product..."
+                        required></textarea>
+            </div>
+          </div>
+
+          <img id="imagePreview" class="image-preview"
+               alt="Product preview" hidden>
+
+          <div class="form-actions">
+            <button type="submit" id="saveProductBtn">
+              Add Product
+            </button>
+            <button type="button" id="cancelEditBtn"
+                    class="secondary-btn" hidden>
+              Cancel Edit
+            </button>
+          </div>
+
+          <p id="productMessage" class="message"></p>
+        </form>
+      </section>
+
+      <!-- PRODUCT MANAGEMENT -->
+      <section class="panel">
+        <h2>Manage Products</h2>
+        <p class="panel-description">
+          Products added here will appear on the public landing page.
+        </p>
+
+        <div id="adminProductList" class="admin-product-list"></div>
+      </section>
+
+      <!-- CREATE ADMIN ACCOUNT -->
+      <section class="panel">
+        <h2>Create Admin Account</h2>
+        <p class="panel-description">
+          Only logged-in administrators can create additional admin accounts.
+        </p>
+
+       <form id="adminForm">
+  <div class="form-grid">
+
+    <div class="field">
+      <label>New Username</label>
+      <input
+        id="newAdminUsername"
+        type="text"
+        placeholder="Enter username"
+        minlength="3"
+        maxlength="30"
+        required>
+    </div>
+
+    <div class="field">
+      <label>New Email Address</label>
+      <input
+        id="newAdminEmail"
+        type="email"
+        placeholder="Enter email address"
+        required>
+    </div>
+
+    <div class="field">
+      <label>New Password</label>
+      <input
+        id="newAdminPassword"
+        type="password"
+        placeholder="Enter password"
+        minlength="8"
+        required>
+    </div>
+
+  </div>
+
+  <button type="submit" id="createAdminBtn">
+    Create Admin Account
+  </button>
+
+  <p id="adminMessage" class="message"></p>
+</form>
+
+        <h3 class="subheading">Existing Admin Accounts</h3>
+        <div id="adminList"></div>
+      </section>
+
+    </main>
+  </section>
+
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>
