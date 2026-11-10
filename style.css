@@ -35,9 +35,13 @@ a {
   justify-content: space-between;
   padding: 20px 8%;
   background: white;
-  position: sticky;
+
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
   box-shadow: 0 2px 15px #0000000d;
 }
 
@@ -1397,6 +1401,9 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+body {
+  padding-top: 120px;
+}
 
 img {
   max-width: 100%;
@@ -1482,7 +1489,7 @@ textarea {
 /* Tablets and large phones */
 @media (max-width: 768px) {
   .header {
-    position: sticky;
+    position: fixed;
     top: 0;
     flex-wrap: wrap;
     justify-content: center;
