@@ -1,8 +1,9 @@
 
 import { defineConfig } from "vite";
+import { resolve } from "node:path";
 
 export default defineConfig({
-  appType: "spa",
+  appType: "mpa",
 
   plugins: [
     {
@@ -14,7 +15,13 @@ export default defineConfig({
 
           if (pathname === "/admin") {
             res.statusCode = 302;
-            res.setHeader("Location", "/admin/" + (req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : ""));
+            res.setHeader(
+              "Location",
+              "/admin/" +
+                (req.url.includes("?")
+                  ? req.url.slice(req.url.indexOf("?"))
+                  : "")
+            );
             res.end();
             return;
           }
@@ -23,6 +30,14 @@ export default defineConfig({
         });
       }
     }
-  ]
-});
+  ],
 
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(process.cwd(), "index.html"),
+        admin: resolve(process.cwd(), "admin/index.html")
+      }
+    }
+  }
+});
